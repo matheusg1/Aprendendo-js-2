@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="600" height="400"></canvas>
+    <script>
+
+        function desenhaRetangulo(x, y, largura, altura, cor) {
+                
+                tela = document.querySelector('canvas');
+                pincel = tela.getContext('2d');
+    
+                pincel.fillStyle=cor;
+                pincel.fillRect(x, y, largura, altura);
+                pincel.strokeStyle;
+                pincel.strokeRect(x, y, largura, altura);
+        }
+
+        function desenhaBarraHorizontal(x, y, serie, cores, texto) {
+
+            somaLargura = 0;
+            for (i = 0; i < serie.length; i++) {
+
+                largura = serie[i];
+                desenhaRetangulo(x + somaLargura, y, largura, 50, cores[i])
+                somaLargura = somaLargura + largura;
+            }
+
+            pincel.fillStyle="black";
+            pincel.font="20px Verdana";
+            pincel.fillText(texto, x, y - 10);
+            
+        }
+
+        function desenhaBarraVertical(x, y, serie, cores, texto) {
+
+            somaAltura = 0;
+            for (i = 0; i < serie.length; i++) {
+
+                altura = serie[i];
+                desenhaRetangulo(x, y + somaAltura, 50, altura, cores[i]);
+                somaAltura = somaAltura + altura;
+            }
+
+            pincel.fillStyle="black";
+            pincel.font="20px Verdana";
+            pincel.fillText(texto, x, y - 10)
+        }
+
+
+        serie2015 = [50, 25, 20, 5]; //alturas
+        serie2016 = [65, 20, 13, 2]; //alturas
+        cores = ['blue', 'green', 'yellow', 'red'];
+
+        desenhaBarraHorizontal(50, 100, serie2015, cores, '2015');
+        desenhaBarraVertical(250, 50, serie2015, cores, '2015');
+
+
+        desenhaBarraHorizontal(50, 250, serie2016, cores, '2016');
+        desenhaBarraVertical(250, 200, serie2016, cores, '2016');
+
+
+    </script>
+</body>
+</html>
