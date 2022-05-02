@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="600" height="400"></canvas>
+    <script>
+        /* 
+        criar canvas, tela e pincel
+        preencher o quadro com a cor cinza, é um retangulo;
+
+        definir tamanho do raio = 10
+        clicado recebe false
+
+        cria funçao desenhaCirculo(evento)
+            se clicado é true
+                x = evento.pageX - tela.offsetLeft;
+                y = ==========   =============== 
+                pincel da cor azul
+                pincel começa a pintar
+
+                se shift está ativo {
+                    se raio é menor que 40 {
+                        raio aumenta em 10;
+                    }
+                }
+                
+                se control está ativo {
+                    se raio maior que 10 {
+                        raio diminui em 5;
+                    }
+                }
+                pincel.arc(x, y, raio, 0, 2 * 3.14);
+                pincel preencher;
+
+            cria funçao habilitaDesenhar {
+                clicado = true;
+            }
+            cria funcao desabilitaDesenhar {
+                clicado = false;
+            }
+
+            tela no clique do mouse = habilitaDesenhar;
+            tela quando solta o mouse = desabilitaDesenhar;
+            no movimento do mouse desenha circulo
+        */
+    </script>
+</body>
+</html>

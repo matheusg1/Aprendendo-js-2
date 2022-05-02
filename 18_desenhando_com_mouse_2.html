@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="600" height="400"></canvas>
+    <script>
+        tela = document.querySelector('canvas');
+        pincel =  tela.getContext('2d');
+
+        pincel.fillStyle="grey";
+        pincel.fillRect(0, 0, 600, 400)
+
+        raio = 10
+        clicado = false;
+
+        function desenhaCirculo(evento) {
+
+            if (clicado) {
+                x = evento.pageX - tela.offsetLeft;
+                y = evento.pageY - tela.offsetTop;
+                pincel.fillStyle="blue";
+                pincel.beginPath();
+                
+                if (evento.shiftKey) {
+                    if (raio < 40) {
+                        raio = raio + 10
+                    }
+                }
+                if (evento.ctrlKey) {
+                    if (raio > 10) {
+                        raio = raio - 5;
+                    }
+                }
+                pincel.arc(x, y, raio, 0, 2 * 3.14);
+                pincel.fill();
+            }
+            console.log(x + ", " + y);
+        }
+
+        function habilitaDesenhar(){
+            clicado = true;
+        }
+        function desabilitaDesenhar(){
+            clicado = false;
+        }
+            tela.onmousedown = habilitaDesenhar;
+            tela.onmouseup = desabilitaDesenhar;
+            tela.onmousemove = desenhaCirculo;
+    </script>
+</body>
+</html>
