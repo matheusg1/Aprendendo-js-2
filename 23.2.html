@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="600" height="400"></canvas>
+
+<script>
+
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+    pincel.fillStyle = 'lightgray';
+    pincel.fillRect(0, 0, 600, 400);
+
+    raio = 20;
+    aumentaDiminui = 20;
+    
+    function desenhaCirculo(x, y, raio, cor) {
+
+        pincel.fillStyle = cor;
+        pincel.beginPath();
+        pincel.arc(x, y, raio, 0, 2 * Math.PI);
+        pincel.fill();
+    }
+
+    function limpaTela() {
+
+        pincel.clearRect(0, 0, 600, 400);
+    }
+
+    function atualizaTela() {
+
+        limpaTela();
+        diminui();
+        aumenta();
+        raio = raio + aumentaDiminui;
+        desenhaCirculo(300, 200, raio, 'blue');
+    }
+
+    function diminui() {
+
+        if (raio > 30) {
+            aumentaDiminui = -1;
+            return aumentaDiminui;
+        }
+    }
+
+    function aumenta() {
+
+        if (raio <= 20) {
+            aumentaDiminui = 1;
+            return aumentaDiminui;
+        }
+    }
+    setInterval(atualizaTela, 20)
+
+</script>
+</body>
+</html>
