@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="600" height="400"></canvas>
+    <script>
+        tela = document.querySelector('canvas');
+        pincel = tela.getContext('2d');
+
+        pincel.fillStyle="grey";
+        pincel.fillRect(0, 0, 600, 400);
+
+        raio = 10;
+        x = 0;
+        y = 0;
+
+        function desenhaCirculo(x, y, raio, cor) {
+
+            pincel.fillStyle=cor;
+            pincel.beginPath();
+            pincel.arc(x, y, raio, 0, 2 * Math.PI)
+            pincel.fill();
+        }
+
+        function limpaTela() {
+            pincel.fillStyle="grey";
+            pincel.fillRect(0, 0, 600, 400);
+            
+        }
+
+        function dispara(evento) {
+
+            x2 = evento.pageX - tela.offsetLeft;
+            y2 = evento.pageY - tela.offsetTop;
+            if 
+                ((x > x2 - raio)
+                && (x < x2 + raio)
+                && (y > y2 - raio)
+                && (y < y2 + raio)) {
+                alert("Acertou!")
+            }
+            else if 
+                ((x > x2 - (raio + 10))
+                && (x < x2 + (raio + 10)
+                && (y > y2 - (raio + 10))
+                && (y < y2 + raio + 10))) {
+                alert("Quase");
+            }
+            else if    
+                ((x > x2 - (raio + 20))
+                && (x < x2 + (raio + 20)
+                && (y > y2 - (raio + 20))
+                && (y < y2 + raio + 20))) {
+                    alert("Longe");
+            }
+        }
+
+        function atualizaTela() {
+
+            limpaTela();
+            x = Math.floor(Math.random() * 601);
+            y = Math.floor(Math.random() * 401);
+            desenhaAlvo(x, y, raio);
+        }
+        
+        function desenhaAlvo() {
+
+            desenhaCirculo(x, y, raio + 20, "red");
+            desenhaCirculo(x, y, raio + 10, "white");
+            desenhaCirculo(x, y, raio, "red");
+        }
+
+        setInterval(atualizaTela, 1000);
+        tela.onclick = dispara;
+    </script>
+</body>
+</html>
